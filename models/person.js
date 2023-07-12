@@ -21,7 +21,8 @@ const personSchema = new mongoose.Schema({
         minLength: 3,
         validate: {
             validator: function (v) {
-                if ((/\d|\W/.test(v)))
+                const regx = /\b[a-z]+|\b \b\s[a-z]+\b/ig
+                if (!v.match(regx))
                     throw new Error(`${v}  is invalid `)
                 else
                     return true
